@@ -23,9 +23,7 @@ WSGI_APPLICATION = 'banquet.wsgi.application'
 
 LOGIN_REDIRECT_URL = '/'
 
-ADMIN_LOGIN_REDIRECT_URL = '/admin/'
-
-
+AUTH_USER_MODEL = 'accounts.SystemUser'
 
 APPEND_SLASH = True
 

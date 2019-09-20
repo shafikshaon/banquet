@@ -1,0 +1,5 @@
+.emphasized:focus {
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 0 2px #6e00ff;
+    box-shadow: 0 0 0 2px #6e00ff;
+}

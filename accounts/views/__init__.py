@@ -1,5 +1,5 @@
 __author__ = "Shafikur Rahman"
 
-from .login import AdminLoginView
+from .login import LoginView
 
-__all__ = ['AdminLoginView']
+__all__ = ['LoginView']

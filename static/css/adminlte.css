@@ -3492,10 +3492,7 @@ input[type="button"].btn-block {
 }
 
 .input-group > .form-control:not(:first-child),
-.input-group > .custom-select:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
+.input-group > .custom-select:not(:first-child) {}
 
 .input-group > .custom-file {
   display: -ms-flexbox;
@@ -20711,21 +20708,6 @@ html.maximized-card {
   border-top: 0;
   color: #666;
   padding: 20px;
-}
-
-.login-card-body .input-group .form-control,
-.register-card-body .input-group .form-control {
-  border-right: 0;
-}
-
-.login-card-body .input-group .form-control:focus,
-.register-card-body .input-group .form-control:focus {
-  box-shadow: none;
-}
-
-.login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text,
-.register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
-  border-color: #80bdff;
 }
 
 .login-card-body .input-group .form-control.is-valid:focus,

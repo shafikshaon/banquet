@@ -1,0 +1,39 @@
+<footer class="main-footer">
+    <strong>Copyright &copy; {% now 'Y' %} <a href="http://shafik.xyz">Shafik</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+        <script type="text/javascript">
+            let req = new XMLHttpRequest();
+            req.open('GET', document.location, false);
+            req.send(null);
+            let headers = req.getAllResponseHeaders();
+
+            headers = headers.split(/\n|\r|\r\n/g).reduce(function (a, b) {
+                if (b.length) {
+                    var [key, value] = b.split(': ');
+                    a[key] = value;
+                }
+                return a;
+            }, {});
+        </script>
+
+        <span id="request_time_consume"></span>
+    </div>
+</footer>
+
+<script>
+    function showStats() {
+        let total_time = headers['x-total-time'];
+        let python_time = headers['x-python-time'];
+        let db_queries = headers['x-db-queries'];
+        let db_time = headers['x-db-time'];
+        let response_text = "Response: <strong>" + total_time + ' ms</strong>';
+        response_text += " - Python: <strong>" + python_time + ' ms</strong>';
+        response_text += " - Queries: <strong>" + db_queries + '</strong>';
+        response_text += " - Query: <strong>" + db_time + ' ms</strong>';
+        document.getElementById("request_time_consume").innerHTML = response_text;
+        {#$('#request_time_consume').html(response_text);#}
+    }
+
+    showStats();
+</script>

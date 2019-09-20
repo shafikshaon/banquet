@@ -1,0 +1,38 @@
+{% for field in form.visible_fields %}
+    <div class="form-group row {% if field.errors %}has-error{% endif %}">
+        <label class="col-md-2 col-form-label text-right"
+               for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+        <div class="col-md-10">
+            {{ field }}
+
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <span class="form-text m-b-none">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        {% if field.help_text %}
+            <span class="help-block">{{ field.help_text }}</span>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% if form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissable text-left">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        {{ form.non_field_errors }}
+    </div>
+{% endif %}
+
+{% for hidden_field in form.hidden_fields %}
+    {% if hidden_field.errors %}
+        <ul>
+            {% for error in hidden_field.errors %}
+                <li>{{ hidden_field.name }} field is required.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {{ hidden_field }}
+{% endfor %}

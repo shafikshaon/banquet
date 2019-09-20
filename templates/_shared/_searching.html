@@ -1,0 +1,33 @@
+{% load sentence_case %}
+{% load get_item %}
+
+{% if searchable_columns %}
+    <form action="" method="get">
+        <div class="row">
+            <ul class="search-area">
+                <li><strong>Search</strong></li>
+                <li>
+                    <label for="field"></label>
+                    <select class="form-control" name="field" id="field">
+                        <option value="">Select one</option>
+                        {% for column in searchable_columns %}
+                            <option value="{{ column|sentence_case|get_item:'name' }}"
+                                    type="{{ column|sentence_case|get_item:'type' }}">
+                                {{ column|sentence_case|get_item:'display_name' }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </li>
+
+                <li>
+                    <label for="search1"></label>
+                    <input type="text" placeholder="" class="form-control font-700" id="search1" name="search1">
+                </li>
+                <li>
+                    <button class="ladda-button btn btn-primary" data-style="expand-right"><span class="ladda-label">Search</span><span
+                            class="ladda-spinner"></span></button>
+                </li>
+            </ul>
+        </div>
+    </form>
+{% endif %}
