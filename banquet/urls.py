@@ -5,7 +5,8 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('gist.urls'))
+    path('', include('gist.urls')),
+    path('', include('accounts.urls')),
 ]
 
 if config('IS_DEVELOPMENT'):
