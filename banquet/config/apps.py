@@ -8,7 +8,10 @@ DJANGO_DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
-CUSTOM_APPS = []
+CUSTOM_APPS = [
+    'gist',
+
+]
 
 SITE_ID = 1
 
