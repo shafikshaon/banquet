@@ -107,4 +107,4 @@ venv.bak/
 
 migrations/
 
-/banquet/config/email.py.example
+/banquet/config/email.py
