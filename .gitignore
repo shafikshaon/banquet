@@ -106,3 +106,5 @@ venv.bak/
 .idea/
 
 migrations/
+
+/banquet/config/email.py.example
