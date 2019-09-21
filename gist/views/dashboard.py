@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
 from accounts.models import SystemUser
@@ -5,7 +6,7 @@ from accounts.models import SystemUser
 __author__ = 'Shafikur Rahman'
 
 
-class DashboardView(TemplateView):
+class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'gist/dashboard.html'
 
     def get_context_data(self, **kwargs):
