@@ -59,7 +59,8 @@
                                     {% for object in objects_list %}
                                         <tr>
                                             <td>
-                                                <a href="#">{{ object.code }}</a>
+                                                <a href="{% url 'accounts:member-detail' object.username %}"
+                                                >{{ object.code }}</a>
                                             </td>
                                             <td>
                                                 {{ object.first_name }} {{ object.last_name }}
@@ -91,12 +92,12 @@
                                             <td>
                                                 <div class="action-buttons">
                                                 <span>
-                                                    <a href="{% url 'accounts:member-change' object.pk %}">
+                                                    <a href="{% url 'accounts:member-change' object.username %}">
                                                        <i class="fa fa-edit mr-2"></i>
                                                     </a>
                                                 </span>
                                                     <span>
-                                                    <a href="{% url 'accounts:member-delete' object.pk %}">
+                                                    <a href="{% url 'accounts:member-delete' object.username %}">
                                                         <i class="fa fa-trash mr-2"></i>
                                                     </a>
                                                 </span>

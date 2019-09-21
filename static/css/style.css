@@ -3,3 +3,11 @@
     -webkit-box-shadow: 0 0 0 2px #6e00ff;
     box-shadow: 0 0 0 2px #6e00ff;
 }
+
+.success {
+    color: #17a2b8;
+}
+
+.danger {
+    color: #dc3545;
+}

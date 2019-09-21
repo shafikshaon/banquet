@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 
 from accounts.forms.system_user_change import SystemUserChangeForm
 from accounts.forms.system_user_creation import SystemUserCreationForm
@@ -67,6 +67,8 @@ class SystemUserChangeView(LoginRequiredMixin, UpdateView):
     template_name = 'accounts/change.html'
     model = SystemUser
     form_class = SystemUserChangeForm
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
 
     def get_context_data(self, **kwargs):
         context = super(SystemUserChangeView, self).get_context_data(**kwargs)
@@ -85,6 +87,8 @@ class SystemUserChangeView(LoginRequiredMixin, UpdateView):
 class SystemUserDelete(LoginRequiredMixin, DeleteView):
     template_name = 'accounts/delete.html'
     model = SystemUser
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
 
     def get_context_data(self, **kwargs):
         context = super(SystemUserDelete, self).get_context_data(**kwargs)
@@ -103,3 +107,20 @@ class SystemUserDelete(LoginRequiredMixin, DeleteView):
             user.save()
             messages.error(self.request, 'Member deleted successfully.')
             return HttpResponseRedirect(reverse('accounts:member-list'))
+
+
+class SystemUserDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'accounts/detail.html'
+    model = SystemUser
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    def get_context_data(self, **kwargs):
+        context = super(SystemUserDetailView, self).get_context_data(**kwargs)
+        context['title'] = 'Member - Details'
+        context['page_headline'] = context['object'].username
+        return context
+
+    def get_queryset(self):
+        queryset = super(SystemUserDetailView, self).get_queryset()
+        return queryset.select_related('add_by', 'change_by')

@@ -1,0 +1,97 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load normalize %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{ page_headline }}</h1>
+                    </div><!-- /.col -->
+
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark float-right">
+                            <a href="#" class="btn btn-block btn-info">Change Password</a>
+                        </h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-12">
+                        {% include '_shared/_message.html' %}
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3"><strong>First name</strong></div>
+                                    <div class="col-md-3">{{ object.first_name|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Last name</strong></div>
+                                    <div class="col-md-3">{{ object.last_name|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Username</strong></div>
+                                    <div class="col-md-3">{{ object.username|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Email</strong></div>
+                                    <div class="col-md-3">{{ object.email|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Is superuser</strong></div>
+                                    <div class="col-md-3">
+                                        {% if object.is_superuser %}
+                                            <span class="success"><i class="fa fa-check-circle"
+                                                                     aria-hidden="true"></i></span>
+                                        {% else %}
+                                            <span class="danger"><i class="fa fa-minus-circle"
+                                                                    aria-hidden="true"></i></span>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-3"><strong>Created by</strong></div>
+                                    <div class="col-md-3">{{ object.add_by|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Created at</strong></div>
+                                    <div class="col-md-3">{{ object.add_at|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Updated by</strong></div>
+                                    <div class="col-md-3">{{ object.change_by|normalize }}</div>
+
+                                    <div class="col-md-3"><strong>Updated on</strong></div>
+                                    <div class="col-md-3">{{ object.change_at|normalize }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- /.Left col -->
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(function () {
+
+        })
+    </script>
+{% endblock %}
