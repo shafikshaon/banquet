@@ -91,12 +91,12 @@
                                             <td>
                                                 <div class="action-buttons">
                                                 <span>
-                                                    <a href="">
+                                                    <a href="{% url 'accounts:member-change' object.pk %}">
                                                        <i class="fa fa-edit mr-2"></i>
                                                     </a>
                                                 </span>
                                                     <span>
-                                                    <a href="">
+                                                    <a href="{% url 'accounts:member-delete' object.pk %}">
                                                         <i class="fa fa-trash mr-2"></i>
                                                     </a>
                                                 </span>

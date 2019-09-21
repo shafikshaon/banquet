@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.utils import timezone
+from django.views.generic import CreateView, UpdateView, DeleteView
 
+from accounts.forms.system_user_change import SystemUserChangeForm
 from accounts.forms.system_user_creation import SystemUserCreationForm
 from accounts.models import SystemUser
 from gist.mixins.ListViewMixin import ListViewMixin
@@ -59,3 +61,45 @@ class SystemUserAddView(LoginRequiredMixin, CreateView):
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
+
+
+class SystemUserChangeView(LoginRequiredMixin, UpdateView):
+    template_name = 'accounts/change.html'
+    model = SystemUser
+    form_class = SystemUserChangeForm
+
+    def get_context_data(self, **kwargs):
+        context = super(SystemUserChangeView, self).get_context_data(**kwargs)
+        context['title'] = 'Member - Update'
+        context['page_headline'] = context['object'].username
+        return context
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.change_by = self.request.user
+        user.save()
+        messages.success(self.request, 'Member updated successfully.')
+        return HttpResponseRedirect(reverse('accounts:member-list'))
+
+
+class SystemUserDelete(LoginRequiredMixin, DeleteView):
+    template_name = 'accounts/delete.html'
+    model = SystemUser
+
+    def get_context_data(self, **kwargs):
+        context = super(SystemUserDelete, self).get_context_data(**kwargs)
+        context['title'] = 'Member - Delete'
+        context['page_headline'] = context['object'].username
+        return context
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            return HttpResponseRedirect(reverse('accounts:member-list'))
+        else:
+            user = self.get_object()
+            user.delete_by = self.request.user
+            user.delete_at = timezone.now()
+            user.is_delete = True
+            user.save()
+            messages.error(self.request, 'Member deleted successfully.')
+            return HttpResponseRedirect(reverse('accounts:member-list'))
