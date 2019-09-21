@@ -7,6 +7,7 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('gist.urls')),
     path('', include('accounts.urls')),
+    path('meals/', include('meals.urls')),
 ]
 
 if config('IS_DEVELOPMENT'):
