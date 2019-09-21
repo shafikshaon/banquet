@@ -1,12 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from gist.models import TimeLog, Activity
+from gist.models import TimeLog, Activity, Key
 
 __author__ = 'Shafikur Rahman'
 
 
-class SystemUser(AbstractUser, TimeLog, Activity):
+class SystemUser(AbstractUser, TimeLog, Activity, Key):
     email = models.EmailField(unique=True, blank=False, null=False)
 
     class Meta:

@@ -11,11 +11,11 @@
                     <span class="form-text m-b-none">{{ error }}</span>
                 {% endfor %}
             {% endif %}
-        </div>
 
-        {% if field.help_text %}
-            <span class="help-block">{{ field.help_text }}</span>
-        {% endif %}
+            {% if field.help_text %}
+                <span class="help-block">{{ field.help_text }}</span>
+            {% endif %}
+        </div>
     </div>
 {% endfor %}
 
