@@ -21,7 +21,9 @@
 
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark float-right">
-                            <a href="#" class="btn btn-block btn-info">Change Password</a>
+                            <a href="{% url 'accounts:member-change' object.username %}" class="btn btn-block btn-info">
+                               <i class="fas fa-pencil-alt" aria-hidden="true"></i> Update
+                            </a>
                         </h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
