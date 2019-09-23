@@ -1,11 +1,11 @@
 from django.db import models
 
-from gist.models import TimeLog, Activity, Key
+from gist.models import TimeLog, Activity, Key, Actor
 
 __author__ = 'Shafikur Rahman'
 
 
-class Organization(TimeLog, Activity, Key):
+class Organization(TimeLog, Activity, Key, Actor):
     name = models.CharField(max_length=128, blank=False, null=False)
     description = models.TextField()
 

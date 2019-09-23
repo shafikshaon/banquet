@@ -1,11 +1,11 @@
 from django.db import models
 
-from gist.models import TimeLog, Activity, Key, Organization
+from gist.models import TimeLog, Activity, Key, Organization, Actor
 
 __author__ = 'Shafikur Rahman'
 
 
-class MealConfig(TimeLog, Activity, Key):
+class MealConfig(TimeLog, Activity, Key, Actor):
     organization = models.ForeignKey(
         Organization,
         on_delete=models.SET_NULL,
