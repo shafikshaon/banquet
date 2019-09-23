@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
 
-from accounts.models import SystemUser
 from configuration.models import MealConfig
 
 
@@ -16,7 +15,7 @@ class MealConfigForm(ModelForm):
                 'autocomplete': 'off'
             }
         ),
-        error_messages={'required': 'Please enter breakfast'},
+        error_messages={'required': 'Please enter breakfast unit'},
         required=True
     )
 
@@ -29,7 +28,7 @@ class MealConfigForm(ModelForm):
                 'autocomplete': 'off'
             }
         ),
-        error_messages={'required': 'Please enter lunch'},
+        error_messages={'required': 'Please enter lunch unit'},
         required=True
     )
 
@@ -42,7 +41,7 @@ class MealConfigForm(ModelForm):
                 'autocomplete': 'off'
             }
         ),
-        error_messages={'required': 'Please enter dinner'},
+        error_messages={'required': 'Please enter dinner unit'},
         required=True
     )
 
@@ -51,11 +50,25 @@ class MealConfigForm(ModelForm):
         fields = ("breakfast", "lunch", "dinner")
 
     def clean_breakfast(self):
-        # password1 = self.cleaned_data.get("password1")
-        # password2 = self.cleaned_data.get("password2")
-        # if password1 and password2 and password1 != password2:
-        #     raise forms.ValidationError(
-        #         self.error_messages['password_mismatch'],
-        #         code='password_mismatch',
-        #     )
-        return self.cleaned_data.get("breakfast")
+        breakfast = self.cleaned_data.get("breakfast")
+        if breakfast and breakfast <= 0:
+            raise forms.ValidationError(
+                message='Breakfast unit should be more than 0'
+            )
+        return breakfast
+
+    def clean_lunch(self):
+        lunch = self.cleaned_data.get("lunch")
+        if lunch and lunch <= 0:
+            raise forms.ValidationError(
+                message='Lunch unit should be more than 0'
+            )
+        return lunch
+
+    def clean_dinner(self):
+        dinner = self.cleaned_data.get("dinner")
+        if dinner and dinner <= 0:
+            raise forms.ValidationError(
+                message='Dinner unit should be more than 0'
+            )
+        return dinner
