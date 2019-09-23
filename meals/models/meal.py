@@ -43,4 +43,4 @@ class Meal(TimeLog, Activity, Key, Actor):
         app_label = "meals"
         db_table = "banquet_meals"
         verbose_name = "meal"
-        verbose_name_plural = "meal_config"
+        verbose_name_plural = "meals"
