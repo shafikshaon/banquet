@@ -31,7 +31,8 @@ class Meal(TimeLog, Activity, Key):
     member = models.ForeignKey(SystemUser, on_delete=models.CASCADE)
     organization = models.ForeignKey(
         Organization,
-        on_delete=models.SET(Organization.objects.get_or_create(name='deleted')[0])
+        on_delete=models.SET_NULL,
+        null=True
     )
     meal_date = models.DateField(blank=False, null=False)
     breakfast = models.FloatField(choices=BREAKFAST_MEAL_COUNT, default=0.5)

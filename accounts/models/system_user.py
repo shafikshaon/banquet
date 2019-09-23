@@ -9,7 +9,8 @@ __author__ = 'Shafikur Rahman'
 class SystemUser(AbstractUser, TimeLog, Activity, Key):
     organization = models.ForeignKey(
         Organization,
-        on_delete=models.SET(Organization.objects.get_or_create(name='deleted')[0])
+        on_delete=models.SET_NULL,
+        null=True
     )
     email = models.EmailField(unique=True, blank=False, null=False)
 

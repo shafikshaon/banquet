@@ -8,7 +8,8 @@ __author__ = 'Shafikur Rahman'
 class MealConfig(TimeLog, Activity, Key):
     organization = models.ForeignKey(
         Organization,
-        on_delete=models.SET(Organization.objects.get_or_create(name='deleted')[0])
+        on_delete=models.SET_NULL,
+        null=True
     )
     breakfast = models.DecimalField(
         max_digits=5,
