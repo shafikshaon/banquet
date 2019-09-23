@@ -35,7 +35,7 @@ class Meal(TimeLog, Activity, Key):
     dinner = models.FloatField(choices=LUNCH_DINNER_MEAL_COUNT, default=1)
 
     class Meta:
-        app_label = "meal_config"
+        app_label = "meals"
         db_table = "banquet_meals"
         verbose_name = "meal"
         verbose_name_plural = "meal_config"
