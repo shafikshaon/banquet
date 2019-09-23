@@ -32,7 +32,7 @@ class MealCreateView(LoginRequiredMixin, CreateView):
         meal.code = 'M-{0}'.format(meal_pk)
         meal.save()
         messages.success(self.request, 'Meal added successfully.')
-        return HttpResponseRedirect(reverse('meals:meal-list'))
+        return HttpResponseRedirect(reverse('meal_config:meal-list'))
 
 
 class MealListView(LoginRequiredMixin, ListView):
@@ -85,7 +85,7 @@ class MealChangeView(LoginRequiredMixin, UpdateView):
         user.change_by = self.request.user
         user.save()
         messages.success(self.request, 'Meal updated successfully.')
-        return HttpResponseRedirect(reverse('meals:meal-list'))
+        return HttpResponseRedirect(reverse('meal_config:meal-list'))
 
 
 class MealDeleteView(LoginRequiredMixin, DeleteView):
@@ -102,7 +102,7 @@ class MealDeleteView(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         if "cancel" in request.POST:
-            return HttpResponseRedirect(reverse('meals:meal-list'))
+            return HttpResponseRedirect(reverse('meal_config:meal-list'))
         else:
             user = self.get_object()
             user.delete_by = self.request.user
@@ -110,7 +110,7 @@ class MealDeleteView(LoginRequiredMixin, DeleteView):
             user.is_delete = True
             user.save()
             messages.error(self.request, 'Meal deleted successfully.')
-            return HttpResponseRedirect(reverse('meals:meal-list'))
+            return HttpResponseRedirect(reverse('meal_config:meal-list'))
 
 
 class MealDetailView(LoginRequiredMixin, DetailView):

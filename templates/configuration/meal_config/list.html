@@ -22,7 +22,8 @@
 
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark float-right">
-                            <a href="{% url 'meal_config:meal-add' %}" class="btn btn-block btn-success">New</a>
+                            <a href="{% url 'configuration:meal-config-add' %}"
+                               class="btn btn-block btn-success">New</a>
                         </h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -45,8 +46,6 @@
                                     <thead>
                                     <tr>
                                         <th>Code</th>
-                                        <th>Meal for</th>
-                                        <th>Meal date</th>
                                         <th>Breakfast</th>
                                         <th>Lunch</th>
                                         <th>Dinner</th>
@@ -60,15 +59,9 @@
                                     {% for object in objects_list %}
                                         <tr>
                                             <td>
-                                                <a href="{% url 'meal_config:meal-detail' object.uuid %}">
+                                                <a href="{% url 'configuration:meal-config-detail' object.uuid %}">
                                                     {{ object.code }}
                                                 </a>
-                                            </td>
-                                            <td>
-                                                {{ object.member__username }}
-                                            </td>
-                                            <td>
-                                                {{ object.meal_date|normalize }}
                                             </td>
                                             <td>
                                                 {{ object.breakfast }}
@@ -91,12 +84,12 @@
                                             <td>
                                                 <div class="action-buttons">
                                                 <span>
-                                                    <a href="{% url 'meal_config:meal-change' object.uuid %}">
+                                                    <a href="{% url 'configuration:meal-config-change' object.uuid %}">
                                                        <i class="fa fa-edit mr-2"></i>
                                                     </a>
                                                 </span>
                                                     <span>
-                                                    <a href="{% url 'meal_config:meal-delete' object.uuid %}">
+                                                    <a href="{% url 'configuration:meal-config-delete' object.uuid %}">
                                                         <i class="fa fa-trash mr-2"></i>
                                                     </a>
                                                 </span>
@@ -105,7 +98,7 @@
                                         </tr>
                                     {% empty %}
                                         <tr>
-                                            <td colspan="6">
+                                            <td colspan="8">
                                                 <h3 class="text-center">Sorry, no roles available.</h3>
                                             </td>
                                         </tr>

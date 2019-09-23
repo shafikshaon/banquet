@@ -3,7 +3,7 @@ from meals.views.meal import MealCreateView, MealListView, MealChangeView, MealD
 __author__ = "Shafikur Rahman"
 from django.urls import path
 
-app_name = 'meals'
+app_name = 'meal_config'
 urlpatterns = [
     path('add/', MealCreateView.as_view(), name='meal-add'),
     path('list/', MealListView.as_view(), name='meal-list'),

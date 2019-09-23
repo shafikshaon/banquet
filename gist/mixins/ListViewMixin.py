@@ -13,6 +13,4 @@ class ListViewMixin(ListView):
         context['order_by_columns'] = self.model.get_order_by_columns
         context['searchable_columns'] = self.model.get_searchable_columns
         context['search_keyword'] = self.request.GET.get('search', None)
-        context['title'] = self.model.page_title if self.model.page_title else ''
-        context['page_headline'] = self.model.page_headline if self.model.page_headline else ''
         return context

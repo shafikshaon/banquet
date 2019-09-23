@@ -21,7 +21,8 @@
 
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark float-right">
-                            <a href="{% url 'meal_config:meal-change' object.uuid %}" class="btn btn-block btn-info">
+                            <a href="{% url 'configuration:meal-config-change' object.uuid %}" class="btn btn-block
+                            btn-info">
                                <i class="fas fa-pencil-alt" aria-hidden="true"></i> Update
                             </a>
                         </h1>
@@ -43,14 +44,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-3"><strong>Meal date</strong></div>
-                                    <div class="col-md-3">{{ object.meal_date|normalize }}</div>
-
                                     <div class="col-md-3"><strong>Breakfast</strong></div>
                                     <div class="col-md-3">{{ object.breakfast }}</div>
 
                                     <div class="col-md-3"><strong>Lunch</strong></div>
-                                    <div class="col-md-3">{{ object.username }}</div>
+                                    <div class="col-md-3">{{ object.lunch }}</div>
 
                                     <div class="col-md-3"><strong>Dinner</strong></div>
                                     <div class="col-md-3">{{ object.dinner }}</div>

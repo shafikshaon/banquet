@@ -1,0 +1,75 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load normalize %}
+{% load cool_paginate %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block styles %}
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{ page_headline }}</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-12">
+                        {% include '_shared/_message.html' %}
+
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    {% include '_shared/_form.html' %}
+
+                                    {% include '_shared/_buttons/_change.html' %}
+
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- /.Left col -->
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'plugins/moment/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <script>
+        $(function () {
+            $('input[name="meal_date"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2015,
+                maxYear: 2025,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+        })
+    </script>
+{% endblock %}

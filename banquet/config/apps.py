@@ -12,6 +12,7 @@ CUSTOM_APPS = [
     'gist',
     'accounts',
     'meals',
+    'configuration',
 ]
 
 SITE_ID = 1
