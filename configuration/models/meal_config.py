@@ -1,11 +1,15 @@
 from django.db import models
 
-from gist.models import TimeLog, Activity, Key
+from gist.models import TimeLog, Activity, Key, Organization
 
 __author__ = 'Shafikur Rahman'
 
 
 class MealConfig(TimeLog, Activity, Key):
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.SET(Organization.objects.get_or_create(name='deleted')[0])
+    )
     breakfast = models.DecimalField(
         max_digits=5,
         decimal_places=2,
