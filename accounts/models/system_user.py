@@ -1,17 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from gist.models import TimeLog, Activity, Key, Organization, Actor
+from gist.models import TimeLog, Activity, Key, Actor
 
 __author__ = 'Shafikur Rahman'
 
 
 class SystemUser(AbstractUser, TimeLog, Activity, Key, Actor):
-    organization = models.ForeignKey(
-        Organization,
-        on_delete=models.SET_NULL,
-        null=True
-    )
     email = models.EmailField(unique=True, blank=False, null=False)
 
     class Meta:

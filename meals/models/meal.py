@@ -1,7 +1,7 @@
 from django.db import models
 
 from accounts.models import SystemUser
-from gist.models import TimeLog, Activity, Key, Organization, Actor
+from gist.models import TimeLog, Activity, Key, Actor
 
 BREAKFAST_MEAL_COUNT = (
     (0, '0'),
@@ -29,11 +29,6 @@ LUNCH_DINNER_MEAL_COUNT = (
 
 class Meal(TimeLog, Activity, Key, Actor):
     member = models.ForeignKey(SystemUser, on_delete=models.CASCADE)
-    organization = models.ForeignKey(
-        Organization,
-        on_delete=models.SET_NULL,
-        null=True
-    )
     meal_date = models.DateField(blank=False, null=False)
     breakfast = models.FloatField(choices=BREAKFAST_MEAL_COUNT, default=0.5)
     lunch = models.FloatField(choices=LUNCH_DINNER_MEAL_COUNT, default=1)
