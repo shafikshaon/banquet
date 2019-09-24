@@ -56,7 +56,7 @@ class MealListView(LoginRequiredMixin, ListView):
         object_list = object_list.filter(
             is_delete=False,
             member_id=self.request.user.pk,
-            meal_date__month=current_month
+            # meal_date__month=current_month
         )
         if search:
             object_list = object_list.filter(name__icontains=search)
@@ -95,7 +95,7 @@ class MealDeleteView(LoginRequiredMixin, DeleteView):
     slug_url_kwarg = 'uuid'
 
     def get_context_data(self, **kwargs):
-        context = super(MealDelete, self).get_context_data(**kwargs)
+        context = super(MealDeleteView, self).get_context_data(**kwargs)
         context['title'] = 'Meal - Delete'
         context['page_headline'] = context['object'].meal_date
         return context
@@ -122,7 +122,7 @@ class MealDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(MealDetailView, self).get_context_data(**kwargs)
         context['title'] = 'Meal - Details'
-        context['page_headline'] = context['object'].username
+        context['page_headline'] = context['object'].meal_date
         return context
 
     def get_queryset(self):

@@ -39,3 +39,4 @@ class Meal(TimeLog, Activity, Key, Actor):
         db_table = "banquet_meals"
         verbose_name = "meal"
         verbose_name_plural = "meals"
+        unique_together = ('member', 'meal_date')
